@@ -1,0 +1,16 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "iReporter-Frontend",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
