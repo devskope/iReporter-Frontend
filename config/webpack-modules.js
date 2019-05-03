@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const postCssPresetEnv = require('postcss-preset-env');
 const cssNano = require('cssnano');
 
 exports.devServer = () => ({
@@ -9,7 +8,6 @@ exports.devServer = () => ({
     historyApiFallback: true,
     hot: true,
     open: true,
-    overlay: true,
     stats: 'errors-only',
   },
 });
@@ -76,7 +74,6 @@ exports.extractStyles = ({ include } = {}) => ({
             loader: 'postcss-loader',
             options: {
               plugins: [
-                postCssPresetEnv({ autoprefixer: { grid: true } }),
                 cssNano({
                   preset: [
                     'default',
