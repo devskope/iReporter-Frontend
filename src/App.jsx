@@ -10,7 +10,6 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
-import Admin from './pages/Admin';
 import NFC from './pages/NFC';
 import ToastContainer from './components/Toast/ToastContainer';
 import CreateRecord from './pages/CreateRecord';
@@ -31,7 +30,6 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/users" component={Users} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/admin" component={Admin} />
           <Route exact path="/records/create" component={CreateRecord} />
           <Route exact path="/records/:type/:id/edit" component={EditRecord} />
           <Route component={NFC} />

@@ -1,13 +1,31 @@
+    
 {
   "addons": [
 
   ],
   "buildpacks": [
-
+    {
+      "url": "heroku/nodejs"
+    }
   ],
   "env": {
+    "API_BASE_URL": {
+      "required": true
+    },
+    "API_LOGIN_URL": {
+      "required": true
+    },
+    "API_SIGNUP_URL": {
+      "required": true
+    },
+    "MAPS_API_KEY": {
+      "required": true
+    }
   },
   "formation": {
+    "web": {
+      "quantity": 1
+    }
   },
   "name": "iReporter-Frontend",
   "scripts": {
