@@ -27,6 +27,13 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/users" component={Users} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/records/create" component={CreateRecord} />
+          <Route exact path="/records/:type/:id/edit" component={EditRecord} />
           <Route component={NFC} />
         </Switch>
       </Router>
