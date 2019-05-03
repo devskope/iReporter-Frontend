@@ -5,6 +5,8 @@ const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
+require('dotenv').config();
+
 const {
   devServer,
   extractStyles,
@@ -20,7 +22,16 @@ const baseConfig = merge([
     resolve: {
       extensions: ['*', '.js', '.jsx'],
     },
-    plugins: [new ImageminPlugin({ test: /\.(jpe?g|png|svg)$/i })],
+    plugins: [
+      new ImageminPlugin({ test: /\.(jpe?g|png|svg)$/i }),
+      new webpack.EnvironmentPlugin([
+        'NODE_ENV',
+        'API_BASE_URL',
+        'API_LOGIN_URL',
+        'API_SIGNUP_URL',
+        'MAPS_API_KEY',
+      ]),
+    ],
     output: {
       path: path.resolve(__dirname, '../static'),
       publicPath: '/',
@@ -47,7 +58,7 @@ const prodConfig = merge([
   {
     output: {
       path: path.resolve(__dirname, '../static'),
-      publicPath: '/',
+      publicPath: './',
       filename: 'bundle.[hash].js',
     },
     devtool: 'source-map',
