@@ -11,7 +11,7 @@ export const isEmpty = (...args) => args.every(param => param === '');
 
 export const getToken = () => localStorage.getItem('iReporter-token');
 
-export const setToken = token =>
+export const setToken = async token =>
   localStorage.setItem('iReporter-token', `Bearer ${token}`);
 
 export const generateKey = () => shortid.generate();
@@ -67,6 +67,10 @@ export const fileHandler = fileList =>
   );
 
 export const awaitFetch = async (requestUrl, options) => {
+  options.headers.Authorization = options.headers.Authorization
+    ? getToken()
+    : null;
+
   try {
     const response = await (await fetch(requestUrl, options)).json();
     return response;

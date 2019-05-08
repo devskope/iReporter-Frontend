@@ -3,7 +3,6 @@ import {
   buildChangedFields,
   awaitFetch,
   buildRecordFetchPath,
-  getToken,
   fetchErrorHandler,
 } from '../../utils/helpers';
 import { createToast } from '../toasts';
@@ -34,7 +33,7 @@ const editRecord = ({
           method: 'PATCH',
           headers: {
             Accept: 'application/json',
-            Authorization: getToken(),
+            Authorization: true,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ [field]: recordPatch[field] }),
