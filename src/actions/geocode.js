@@ -16,10 +16,7 @@ export const reverseGeocode = ({ lat, lng }) => async dispatch => {
 
   try {
     const { results } = await awaitFetch(
-      `
-      https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyApBXNZ8DfcSajnuuNOEMWNNH0eIZdBtws
-    `,
-      {}
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyApBXNZ8DfcSajnuuNOEMWNNH0eIZdBtws`
     );
 
     if (results.length) {

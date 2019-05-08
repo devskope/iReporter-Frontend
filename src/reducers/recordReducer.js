@@ -17,7 +17,7 @@ const initialState = {
 const records = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.RECORD_REQUEST:
-      return { ...state, pending: true, edited: false };
+      return { ...state, recordList: [], pending: true, edited: false };
 
     case types.RECORD_CREATE_SUCCESS:
       return {
@@ -102,10 +102,10 @@ const records = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stats: {
-          draft: 0,
-          resolved: 0,
-          rejected: 0,
-          investigating: 0,
+          Draft: 0,
+          Resolved: 0,
+          Rejected: 0,
+          Investigating: 0,
         },
       };
     }

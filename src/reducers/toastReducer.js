@@ -1,12 +1,10 @@
+/* eslint-disable no-param-reassign */
 import { CREATE_TOAST, DELETE_TOAST } from '../actions/types';
 import { generateKey } from '../utils/helpers';
 
 const initialState = [];
 
 const toastReducer = (state = initialState, { type, payload }) => {
-  if (state.length > 4) {
-    state.shift();
-  }
   switch (type) {
     case CREATE_TOAST:
       return [

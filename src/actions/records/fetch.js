@@ -5,8 +5,17 @@ import {
   buildRecordFetchPath,
   fetchErrorHandler,
   CenterLocation,
+  getToken,
 } from '../../utils/helpers';
 import { reverseGeocode } from '../geocode';
+
+const fetchOptions = {
+  headers: {
+    Accept: 'application/json',
+    Authorization: getToken(),
+    'Content-Type': 'application/json',
+  },
+};
 
 export const fetchRecords = options => async dispatch => {
   const { type, status, userScoped, userID } = options;
@@ -21,7 +30,10 @@ export const fetchRecords = options => async dispatch => {
   });
 
   try {
-    const { status: resStatus, data, errors } = await awaitFetch(requestUrl);
+    const { status: resStatus, data, errors } = await awaitFetch(
+      requestUrl,
+      fetchOptions
+    );
 
     if (errors) {
       dispatch({
@@ -59,7 +71,7 @@ export const fetchSingleRecord = ({ singleRecordPath }) => async dispatch => {
     const {
       errors,
       data: [record],
-    } = await awaitFetch(requestUrl);
+    } = await awaitFetch(requestUrl, fetchOptions);
 
     if (errors) {
       dispatch({
@@ -93,7 +105,7 @@ export const fetchDashboardStats = ({
 
   dispatch({ type: types.STATS_FETCH });
   try {
-    const { status, errors, data } = await awaitFetch(requestUrl);
+    const { status, errors, data } = await awaitFetch(requestUrl, fetchOptions);
 
     if (status === 404 || errors) dispatch({ type: types.STATS_FETCH_ERROR });
     else {

@@ -1,4 +1,5 @@
 import {
+  AUTH_INIT,
   AUTH_ERROR,
   CLEAR_AUTH_ERRORS,
   LOGGED_IN,
@@ -23,6 +24,16 @@ const initialState = {
 
 const auth = (state = initialState, { type, payload }) => {
   switch (type) {
+    case AUTH_INIT:
+      return {
+        ...initialState,
+        created: false,
+        errors: [],
+        loggedIn: false,
+        pending: true,
+        user: null,
+      };
+
     case LOGGED_IN:
       return {
         ...state,
@@ -79,10 +90,10 @@ const auth = (state = initialState, { type, payload }) => {
       return {
         ...state,
         stats: {
-          draft: 0,
-          resolved: 0,
-          rejected: 0,
-          investigating: 0,
+          Draft: 0,
+          Resolved: 0,
+          Rejected: 0,
+          Investigating: 0,
         },
       };
     }

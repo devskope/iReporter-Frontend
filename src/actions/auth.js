@@ -1,4 +1,4 @@
-import { AUTH_ERROR, CLEAR_AUTH_ERRORS, LOGGED_IN, SIGNED_UP } from './types';
+import * as types from './types';
 import {
   awaitFetch,
   setToken,
@@ -23,16 +23,16 @@ const authResponseHandler = (response, dispatch, type) => {
 
   if (errors) {
     dispatch({
-      type: AUTH_ERROR,
+      type: types.AUTH_ERROR,
       payload: errors,
     });
   } else {
     const [{ token, user }] = data;
 
-    dispatch({ type, payload: { user, token } });
     setToken(token);
+    dispatch({ type, payload: user });
 
-    if (type === SIGNED_UP)
+    if (type === types.SIGNED_UP)
       dispatch(
         createToast({
           type: 'SUCCESS',
@@ -40,7 +40,7 @@ const authResponseHandler = (response, dispatch, type) => {
         })
       );
 
-    if (type === LOGGED_IN)
+    if (type === types.LOGGED_IN)
       dispatch(
         createToast({
           type: 'SUCCESS',
@@ -51,26 +51,30 @@ const authResponseHandler = (response, dispatch, type) => {
 };
 
 export const login = userPayload => async dispatch => {
+  dispatch({ type: types.AUTH_INIT });
+
   const { validationErrors, validFields } = requireValidateFields([
     'username',
     'password',
   ])(userPayload);
 
   if (validationErrors.length) {
-    dispatch({ type: AUTH_ERROR, payload: validationErrors });
+    dispatch({ type: types.AUTH_ERROR, payload: validationErrors });
   } else
     try {
       const response = await awaitFetch(
         process.env.API_LOGIN_URL,
         authFetchOptions(validFields)
       );
-      authResponseHandler(response, dispatch, LOGGED_IN);
+      authResponseHandler(response, dispatch, types.LOGGED_IN);
     } catch (error) {
       fetchErrorHandler(error, dispatch);
     }
 };
 
 export const signUp = userPayload => async dispatch => {
+  dispatch({ type: types.AUTH_INIT });
+
   const { validationErrors, validFields } = requireValidateFields([
     'email',
     'username',
@@ -80,17 +84,17 @@ export const signUp = userPayload => async dispatch => {
   ])(userPayload);
 
   if (validationErrors.length) {
-    dispatch({ type: AUTH_ERROR, payload: validationErrors });
+    dispatch({ type: types.AUTH_ERROR, payload: validationErrors });
   } else
     try {
       const response = await awaitFetch(
         process.env.API_SIGNUP_URL,
         authFetchOptions(validFields)
       );
-      authResponseHandler(response, dispatch, SIGNED_UP);
+      authResponseHandler(response, dispatch, types.SIGNED_UP);
     } catch (error) {
       fetchErrorHandler(error, dispatch);
     }
 };
 
-export const clearAuthErrors = () => ({ type: CLEAR_AUTH_ERRORS });
+export const clearAuthErrors = () => ({ type: types.CLEAR_AUTH_ERRORS });

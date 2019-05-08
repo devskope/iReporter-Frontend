@@ -8,7 +8,6 @@ export const createToast = ({
   dispatch
     ? dispatch({ type: CREATE_TOAST, payload: { type, title, messages } })
     : { type: CREATE_TOAST, payload: { type, title, messages } };
-
 export const deleteToast = id => dispatch =>
   dispatch
     ? dispatch({ type: DELETE_TOAST, payload: { id } })
