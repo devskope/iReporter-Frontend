@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import toJson from 'enzyme-to-json';
 import AuthForm from '../../../src/components/Auth/AuthForm';
 
 const setup = () => {
@@ -22,9 +23,9 @@ const setup = () => {
     errors: ['error message', 'error message'],
   };
   return mount(
-    <MemoryRouter>
+    <Router>
       <AuthForm {...props} />
-    </MemoryRouter>
+    </Router>
   );
 };
 
@@ -43,6 +44,6 @@ describe('AuthForm', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

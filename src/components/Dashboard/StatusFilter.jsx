@@ -2,28 +2,33 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const StatusFilter = ({ active, value, setStatusFilter }) => (
-  <li
-    className={`dashboard__filter-category ${active ? 'active' : ''}`}
-    onClick={() =>
-      setStatusFilter(value.toLowerCase() !== 'all' ? value.toLowerCase() : '')
-    }
-  >
-    {value}
-  </li>
-);
+const StatusFilter = ({ active, value, setStatusFilter }) => {
+  const filterClasses = classNames({
+    'dashboard__filter-category': true,
+    active,
+  });
+
+  const selectFilter = () => {
+    setStatusFilter(value.toLowerCase() !== 'all' ? value.toLowerCase() : '');
+  };
+
+  return (
+    <li className={filterClasses} onClick={selectFilter}>
+      {value}
+    </li>
+  );
+};
 
 StatusFilter.defaultProps = {
-  setStatusFilter: x => x,
   active: false,
-  value: '',
 };
 
 StatusFilter.propTypes = {
-  setStatusFilter: PropTypes.func,
+  setStatusFilter: PropTypes.func.isRequired,
   active: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 export default StatusFilter;

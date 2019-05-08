@@ -1,16 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import App from '../src/App';
 
-const setup = () => {
-  const props = {};
-  return mount(<App {...props} />);
-};
+const setup = () => mount(<App />);
 
 describe('App', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
-
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

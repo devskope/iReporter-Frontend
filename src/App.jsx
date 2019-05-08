@@ -14,8 +14,9 @@ import NFC from './pages/NFC';
 import ToastContainer from './components/Toast/ToastContainer';
 import CreateRecord from './pages/CreateRecord';
 import EditRecord from './pages/EditRecord';
+import ProtectedRoute from './components/ProtectedRoute';
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(reduxThunk))
 );
@@ -28,10 +29,18 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/users" component={Users} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/records/create" component={CreateRecord} />
-          <Route exact path="/records/:type/:id/edit" component={EditRecord} />
+          <ProtectedRoute
+            exact
+            path="/records/create"
+            component={CreateRecord}
+          />
+          <ProtectedRoute
+            exact
+            path="/records/:type/:id/edit"
+            component={EditRecord}
+          />
+          <ProtectedRoute exact path="/users" component={Users} />
+          <ProtectedRoute exact path="/profile" component={Profile} />
           <Route component={NFC} />
         </Switch>
       </Router>

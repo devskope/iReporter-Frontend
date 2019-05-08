@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -23,7 +23,7 @@ const EditRecord = ({
   records,
   auth,
 }) => {
-  const [retrievedFieldvalues, setRetrievedFieldvalues] = useState({
+  const [retrievedFieldValues, setRetrievedFieldValues] = useState({
     comment: '',
     location: '',
     emailNotify: false,
@@ -73,7 +73,7 @@ const EditRecord = ({
         address,
       });
 
-      setRetrievedFieldvalues({ comment, location, emailNotify });
+      setRetrievedFieldValues({ comment, location, emailNotify });
       setStaticFields({ title, type, id });
     }
   }, [records.record.id]);
@@ -107,7 +107,7 @@ const EditRecord = ({
     e.preventDefault();
 
     recordEditDispatch({
-      prevFieldValues: retrievedFieldvalues,
+      prevFieldValues: retrievedFieldValues,
       editedValues: editableFieldValues,
       path: `${type}s/${id}`,
     });
@@ -117,6 +117,14 @@ const EditRecord = ({
     { name: 'Profile', target: '/profile' },
     { name: 'Logout', target: '/', className: 'btn btn--nav' },
   ];
+
+  const sidebarButton = (
+    <Link to="/profile">
+      <button type="button" className="dashboard__sidebar-btn">
+        Profile
+      </button>
+    </Link>
+  );
 
   const statWidgets = Object.entries(auth.stats).map(([stat, count]) => (
     <RecordStatWidget
@@ -142,7 +150,7 @@ const EditRecord = ({
     <Fragment>
       <Topbar links={topBarLinks} />
       <div className="dashboard">
-        <Sidebar statWidgets={statWidgets} />
+        <Sidebar statWidgets={statWidgets} button={sidebarButton} />
         <main className="dashboard__main">
           <div className={classes.loader} />
           <section className="create-edit-form-wrapper">
@@ -165,7 +173,9 @@ const EditRecord = ({
 
 EditRecord.propTypes = {
   match: PropTypes.shape({
-    params: PropTypes.objectOf(PropTypes.string).isRequired,
+    params: PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+    ).isRequired,
   }).isRequired,
   auth: PropTypes.objectOf(
     PropTypes.oneOfType([

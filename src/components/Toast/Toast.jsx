@@ -1,9 +1,8 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
-import { generateKey } from '../../utils/helpers';
 
 const Toast = ({ title, type, messages, timeOut, visible }) => {
   const [toastInState, setToastInState] = useState(true);
@@ -21,13 +20,13 @@ const Toast = ({ title, type, messages, timeOut, visible }) => {
     visible: visible && toastInState,
   });
 
-  const messageList = messages.map(message => {
+  const messageList = messages.map((message, i) => {
     return title ? (
-      <p key={generateKey()} className="notification__text">
+      <p key={i} className="notification__text">
         {message}
       </p>
     ) : (
-      <li key={generateKey()} className="notification__text">
+      <li key={i} className="notification__text">
         {message}
       </li>
     );
@@ -70,7 +69,7 @@ Toast.defaultProps = {
 
 Toast.propTypes = {
   title: PropTypes.string,
-  type: PropTypes.oneOf(['SUCCESS', 'ERROR']),
+  type: PropTypes.oneOf(['SUCCESS', 'ERROR']).isRequired,
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
   timeOut: PropTypes.number.isRequired,
   visible: PropTypes.bool.isRequired,

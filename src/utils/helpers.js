@@ -66,15 +66,7 @@ export const fileHandler = fileList =>
     }
   );
 
-export const fetchOptions = {
-  headers: {
-    Accept: 'application/json',
-    Authorization: getToken(),
-    'Content-Type': 'application/json',
-  },
-};
-
-export const awaitFetch = async (requestUrl, options = fetchOptions) => {
+export const awaitFetch = async (requestUrl, options) => {
   try {
     const response = await (await fetch(requestUrl, options)).json();
     return response;

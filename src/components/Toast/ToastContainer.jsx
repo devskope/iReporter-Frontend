@@ -3,34 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { TransitionGroup } from 'react-transition-group';
-// import { generateKey } from '../../utils/helpers';
 import Toast from './Toast';
 
 const ToastContainer = ({ timeOut, toast }) => {
-  // const [toasts /* setToasts */] = useState([
-  //   {
-  //     title: 'lklkl',
-  //     messages: ['lklk', 'hggyy'],
-  //     type: 'SUCCESS',
-  //     visible: true,
-  //     id: generateKey(),
-  //   },
-  //   {
-  //     title: 'lklkl',
-  //     messages: ['lklk', 'hggyy'],
-  //     type: 'SUCCESS',
-  //     visible: true,
-  //     id: generateKey(),
-  //   },
-  //   {
-  //     title: 'lklkl',
-  //     messages: ['lklk', 'hggyy'],
-  //     type: 'SUCCESS',
-  //     visible: true,
-  //     id: generateKey(),
-  //   },
-  // ]);
-
   const className = classNames({
     'notification-wrapper': true,
     visible: !!toast.length,
@@ -54,6 +29,7 @@ const ToastContainer = ({ timeOut, toast }) => {
 
 ToastContainer.defaultProps = {
   timeOut: 2500,
+  toast: [],
 };
 
 ToastContainer.propTypes = {
@@ -62,7 +38,7 @@ ToastContainer.propTypes = {
     PropTypes.objectOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.bool])
     )
-  ).isRequired,
+  ),
 };
 
 export default connect(state => ({ toast: state.toast }))(ToastContainer);

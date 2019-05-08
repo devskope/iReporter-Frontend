@@ -47,6 +47,7 @@ Record.propTypes = {
       PropTypes.number,
       PropTypes.array,
       PropTypes.string,
+      PropTypes.bool,
     ])
   ),
   detailView: PropTypes.func,

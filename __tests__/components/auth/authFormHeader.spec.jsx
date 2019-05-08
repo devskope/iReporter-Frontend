@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import AuthFormHeader from '../../../src/components/Auth/AuthFormHeader';
 
 describe('AuthFormHeader', () => {
@@ -14,6 +15,6 @@ describe('AuthFormHeader', () => {
   it('should match snapshot', () => {
     const wrapper = mount(<AuthFormHeader authType="SIGNUP" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

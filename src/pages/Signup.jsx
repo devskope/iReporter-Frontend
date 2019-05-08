@@ -1,8 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import classNames from 'classnames';
 import { signUp, clearAuthErrors } from '../actions/auth';
 import Topbar from '../components/Topbar';
 import AuthForm from '../components/Auth/AuthForm';
@@ -95,9 +95,15 @@ const Signup = ({ signUpDispatch, clearErrors, auth }) => {
     },
   ];
 
+  const loaderClass = classNames({
+    loader: true,
+    active: auth.pending,
+  });
+
   return (
     <div>
       <Topbar links={topBarLinks} />
+      <div className={loaderClass} />
       <AuthForm
         authType="SIGNUP"
         clearErrors={clearErrors}

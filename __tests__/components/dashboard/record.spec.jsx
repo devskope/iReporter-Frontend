@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Record from '../../../src/components/Dashboard/Record';
 
 const setup = () => {
@@ -20,6 +21,6 @@ describe('Record', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

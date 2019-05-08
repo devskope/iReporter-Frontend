@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import AuthFormField from '../../../src/components/Auth/AuthFormField';
 
 const setup = () => {
@@ -25,5 +26,11 @@ describe('AuthFormField', () => {
     expect(wrapper.find('.form-field').exists()).toBe(true);
     expect(InputProps.value).toBe('value');
     expect(InputProps.placeholder).toBe('placeholder');
+  });
+
+  it('should match snapshot', () => {
+    const wrapper = setup();
+
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

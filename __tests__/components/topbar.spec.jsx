@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
+import toJson from 'enzyme-to-json';
 import Topbar from '../../src/components/Topbar';
 
 describe('Topbar', () => {
@@ -21,7 +22,7 @@ describe('Topbar', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('should render user widget', () => {

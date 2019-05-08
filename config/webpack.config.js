@@ -37,6 +37,19 @@ const baseConfig = merge([
       publicPath: '/',
       filename: 'bundle.[hash].js',
     },
+    devtool: 'source-map',
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            output: {
+              comments: false,
+            },
+          },
+          sourceMap: true,
+        }),
+      ],
+    },
   },
   loadHtml(),
   loadJavascript({ include: path.join(__dirname, '../src') }),
@@ -60,19 +73,6 @@ const prodConfig = merge([
       path: path.resolve(__dirname, '../static'),
       publicPath: './',
       filename: 'bundle.[hash].js',
-    },
-    devtool: 'source-map',
-    optimization: {
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            output: {
-              comments: false,
-            },
-          },
-          sourceMap: true,
-        }),
-      ],
     },
   },
   loadImages({ options: { limit: 5000 } }),

@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -78,6 +78,14 @@ const CreateRecord = ({
     { name: 'Logout', target: '/', className: 'btn btn--nav' },
   ];
 
+  const sidebarButton = (
+    <Link to="/profile">
+      <button type="button" className="dashboard__sidebar-btn">
+        Profile
+      </button>
+    </Link>
+  );
+
   const statWidgets = Object.entries(auth.stats).map(([stat, count]) => (
     <RecordStatWidget
       key={stat}
@@ -101,7 +109,7 @@ const CreateRecord = ({
     <Fragment>
       <Topbar links={topBarLinks} />
       <div className="dashboard">
-        <Sidebar statWidgets={statWidgets} />
+        <Sidebar statWidgets={statWidgets} button={sidebarButton} />
         <main className="dashboard__main">
           <div className={classes.loader} />
           <section className="create-edit-form-wrapper">
