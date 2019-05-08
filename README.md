@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/devskope/iReporter-Frontend.svg?branch=develop)](https://travis-ci.org/devskope/iReporter-Frontend) &nbsp; &nbsp;
-[![codecov](https://codecov.io/gh/devskope/iReporter-Frontend/branch/master/graph/badge.svg)](https://codecov.io/gh/devskope/iReporter-Frontend)
+[![codecov](https://codecov.io/gh/devskope/iReporter-Frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/devskope/iReporter-Frontend)
 # iReporter-Frontend
 
 ### Description
