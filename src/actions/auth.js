@@ -92,3 +92,14 @@ export const signUp = userPayload => async dispatch => {
 };
 
 export const clearAuthErrors = () => ({ type: types.CLEAR_AUTH_ERRORS });
+
+export const logout = () => dispatch => {
+  dispatch({ type: types.LOGOUT });
+  dispatch(
+    createToast({
+      type: 'SUCCESS',
+      title: 'Logged out',
+      messages: [`You have logged out successfully`],
+    })
+  );
+};

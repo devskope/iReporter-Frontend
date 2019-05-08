@@ -6,6 +6,7 @@ import {
   SIGNED_UP,
   USER_STATS_FETCH_SUCCESS,
   STATS_FETCH_ERROR,
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -97,6 +98,9 @@ const auth = (state = initialState, { type, payload }) => {
         },
       };
     }
+
+    case LOGOUT:
+      return { ...initialState };
 
     default:
       return state;

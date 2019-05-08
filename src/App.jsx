@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
+import Logout from './pages/Logout';
 import NFC from './pages/NFC';
 import ToastContainer from './components/Toast/ToastContainer';
 import CreateRecord from './pages/CreateRecord';
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
           <ProtectedRoute
             exact
             path="/records/create"

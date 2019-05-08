@@ -48,7 +48,7 @@ const Profile = ({
 
   const topBarLinks = [
     { name: 'Dashboard', target: '/users' },
-    { name: 'Logout', target: '/', className: 'btn btn--nav' },
+    { name: 'Logout', target: '/logout', className: 'btn btn--nav' },
   ];
 
   const sidebarButton = (
