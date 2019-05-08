@@ -17,7 +17,7 @@ module.exports = {
   },
   setupFiles: ['<rootDir>/enzyme.config.js'],
   testEnvironment: 'jsdom',
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+  testMatch: ['**/__tests__/**/*.js?(x)'],
   testPathIgnorePatterns: [
     '\\\\node_modules\\\\',
     './__tests__/helpers/*',

@@ -10,14 +10,9 @@ const RecordStatWidget = ({ title, count }) => {
   );
 };
 
-RecordStatWidget.defaultProps = {
-  title: 'status',
-  count: 0,
-};
-
 RecordStatWidget.propTypes = {
-  title: PropTypes.string,
-  count: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export default RecordStatWidget;

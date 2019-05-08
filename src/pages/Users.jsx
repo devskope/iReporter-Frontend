@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { fetchRecords, fetchDashboardStats } from '../actions/records/fetch';
 import Topbar from '../components/Topbar';
@@ -44,6 +45,14 @@ const Users = ({ fetchRecordStats, recordFetchDispatch, records }) => {
     { name: 'Logout', target: '/', className: 'btn btn--nav' },
   ];
 
+  const sidebarButton = (
+    <Link to="/records/create">
+      <button type="button" className="dashboard__sidebar-btn">
+        New Record
+      </button>
+    </Link>
+  );
+
   const statWidgets = Object.entries(records.stats).map(([stat, count]) => (
     <RecordStatWidget
       key={stat}
@@ -72,7 +81,7 @@ const Users = ({ fetchRecordStats, recordFetchDispatch, records }) => {
     <Fragment>
       <Topbar links={tobBarLinks} />
       <div className="dashboard dashboard--users">
-        <Sidebar statWidgets={statWidgets} />
+        <Sidebar statWidgets={statWidgets} button={sidebarButton} />
         <main className="dashboard__main">
           <div className={classes.loader} />
           <RecordFilters
@@ -112,7 +121,6 @@ Users.propTypes = {
 export default connect(
   state => ({
     records: state.records,
-    auth: state.auth,
   }),
   {
     recordFetchDispatch: fetchRecords,

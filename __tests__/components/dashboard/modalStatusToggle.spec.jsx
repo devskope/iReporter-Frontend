@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import ModalStatusToggle from '../../../src/components/Dashboard/ModalStatusToggle';
 
 const setup = () => {
@@ -21,6 +22,6 @@ describe('ModalStatusToggle', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

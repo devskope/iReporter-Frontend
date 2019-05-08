@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
+import toJson from 'enzyme-to-json';
 import Footer from '../../src/components/Footer';
 
 describe('Footer component', () => {
@@ -18,6 +19,6 @@ describe('Footer component', () => {
   it('should match snapshot', () => {
     const wrapper = mount(<Footer />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

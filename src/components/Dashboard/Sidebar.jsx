@@ -1,34 +1,34 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const Sidebar = ({ button, statWidgets, alternate }) => {
+const Sidebar = ({ button, statWidgets }) => {
+  const [active, setActive] = useState(false);
+
+  const sideBarClass = classNames({
+    dashboard__sidebar: true,
+    active,
+  });
+
   return (
-    <aside
-      className={`dashboard__sidebar${
-        alternate ? ' hidden-wide sidebar-forced-height' : ''
-      }`}
-    >
-      <p className="dashboard__sidebar-toggle">SIDEBAR</p>
+    <aside className={sideBarClass}>
+      <p
+        className="dashboard__sidebar-toggle"
+        onClick={() => setActive(!active)}
+      >
+        SIDEBAR
+      </p>
       {button}
       {statWidgets.map(widget => widget)}
     </aside>
   );
 };
 
-Sidebar.defaultProps = {
-  alternate: false,
-  button: (
-    <button type="button" className="dashboard__sidebar-btn new">
-      New Record
-    </button>
-  ),
-  statWidgets: [],
-};
-
 Sidebar.propTypes = {
-  alternate: PropTypes.bool,
-  button: PropTypes.element,
-  statWidgets: PropTypes.arrayOf(PropTypes.element),
+  button: PropTypes.element.isRequired,
+  statWidgets: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 export default Sidebar;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import AuthFormLinks from '../../../src/components/Auth/AuthFormLinks';
 
 describe('AuthFormLinks', () => {
@@ -13,6 +14,6 @@ describe('AuthFormLinks', () => {
   it('should match snapshot', () => {
     const wrapper = shallow(<AuthFormLinks authType="SIGNUP" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -5,15 +5,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const generateLinks = linkProp =>
-  linkProp.map(({ name, target, className }) => (
-    <li key={name} className="topbar__list-item">
-      <Link to={target} className={className || 'topbar__link'}>
-        {name}
-      </Link>
-    </li>
-  ));
-
 const Topbar = ({ links, userWidget, username }) => {
   const [mobileNavToggled, setMobileNavToggled] = useState(false);
   const [userWidgetToggled, setUserWidgetToggled] = useState(false);
@@ -21,6 +12,15 @@ const Topbar = ({ links, userWidget, username }) => {
   const toggleMobileNav = () => {
     setMobileNavToggled(!mobileNavToggled);
   };
+
+  const generateLinks = () =>
+    links.map(({ name, target, className }) => (
+      <li key={name} className="topbar__list-item">
+        <Link to={target} className={className || 'topbar__link'}>
+          {name}
+        </Link>
+      </li>
+    ));
 
   return (
     <nav className="topbar">

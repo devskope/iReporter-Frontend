@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import AuthMessageWidget from '../../../src/components/Auth/AuthMessageWidget';
 
 const setup = () => {
@@ -21,6 +22,6 @@ describe('AuthMessageWidget', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

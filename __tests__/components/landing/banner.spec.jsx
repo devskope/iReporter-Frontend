@@ -1,11 +1,11 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import App from '../src/App';
+import Banner from '../../../src/components/Landing/Banner';
 
-const setup = () => mount(<App />);
+describe('Banner', () => {
+  const setup = () => shallow(<Banner />);
 
-describe('App', () => {
   it('should match snapshot', () => {
     const wrapper = setup();
     expect(toJson(wrapper)).toMatchSnapshot();

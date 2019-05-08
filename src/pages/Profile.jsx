@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { fetchRecords, fetchDashboardStats } from '../actions/records/fetch';
 import deleteRecord from '../actions/records/delete';
@@ -30,7 +31,7 @@ const Profile = ({
   useEffect(() => {
     fetchRecordStats({ userScoped: true });
     apiFetch({ type: typeFilter, status: statusFilter });
-  }, [typeFilter, statusFilter]);
+  }, [typeFilter, statusFilter, detailModalVisible]);
 
   const typeFilterChange = e => {
     setTypeFilter(e.target.value);
@@ -49,6 +50,14 @@ const Profile = ({
     { name: 'Dashboard', target: '/users' },
     { name: 'Logout', target: '/', className: 'btn btn--nav' },
   ];
+
+  const sidebarButton = (
+    <Link to="/records/create">
+      <button type="button" className="dashboard__sidebar-btn">
+        New Record
+      </button>
+    </Link>
+  );
 
   const statWidgets = Object.entries(auth.stats).map(([stat, count]) => (
     <RecordStatWidget
@@ -76,9 +85,9 @@ const Profile = ({
 
   return (
     <Fragment>
-      <Topbar links={topBarLinks} userWidget />
+      <Topbar links={topBarLinks} userWidget username={auth.user.username} />
       <div className="dashboard dashboard--profile">
-        <Sidebar statWidgets={statWidgets} />
+        <Sidebar statWidgets={statWidgets} button={sidebarButton} />
         <main className="dashboard__main">
           <div className={classes.loader} />
           <RecordFilters
