@@ -1,9 +1,5 @@
 import * as types from '../types';
-import {
-  awaitFetch,
-  buildRecordFetchPath,
-  getToken,
-} from '../../utils/helpers';
+import { awaitFetch, buildRecordFetchPath } from '../../utils/helpers';
 import { createToast } from '../toasts';
 
 const deleteRecord = singleRecordPath => async dispatch => {
@@ -17,7 +13,7 @@ const deleteRecord = singleRecordPath => async dispatch => {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
-      Authorization: getToken(),
+      Authorization: true,
       'Content-Type': 'application/json',
     },
   });

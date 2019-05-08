@@ -1,10 +1,5 @@
 import * as types from './types';
-import {
-  awaitFetch,
-  setToken,
-  fetchErrorHandler,
-  getToken,
-} from '../utils/helpers';
+import { awaitFetch, setToken, fetchErrorHandler } from '../utils/helpers';
 import { requireValidateFields } from '../utils/validator';
 import { createToast } from './toasts';
 
@@ -12,13 +7,12 @@ const authFetchOptions = payload => ({
   method: 'POST',
   headers: {
     Accept: 'application/json',
-    Authorization: getToken(),
     'Content-Type': 'application/json',
   },
   body: JSON.stringify(payload),
 });
 
-const authResponseHandler = (response, dispatch, type) => {
+const authResponseHandler = async (response, dispatch, type) => {
   const { errors, data } = response;
 
   if (errors) {
@@ -29,7 +23,7 @@ const authResponseHandler = (response, dispatch, type) => {
   } else {
     const [{ token, user }] = data;
 
-    setToken(token);
+    await setToken(token);
     dispatch({ type, payload: user });
 
     if (type === types.SIGNED_UP)

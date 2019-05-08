@@ -3,7 +3,6 @@ import { requireValidateFields } from '../../utils/validator';
 import { createToast } from '../toasts';
 import {
   awaitFetch,
-  getToken,
   fetchErrorHandler,
   fileHandler,
 } from '../../utils/helpers';
@@ -46,7 +45,7 @@ const createRecord = recordDetails => async dispatch => {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            Authorization: getToken(),
+            Authorization: true,
           },
           body: recipeRequestData,
         }

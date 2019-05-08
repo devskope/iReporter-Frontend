@@ -5,14 +5,13 @@ import {
   buildRecordFetchPath,
   fetchErrorHandler,
   CenterLocation,
-  getToken,
 } from '../../utils/helpers';
 import { reverseGeocode } from '../geocode';
 
 const fetchOptions = {
   headers: {
     Accept: 'application/json',
-    Authorization: getToken(),
+    Authorization: true,
     'Content-Type': 'application/json',
   },
 };
