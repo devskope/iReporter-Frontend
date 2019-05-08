@@ -30,6 +30,10 @@ const loggedInState = reducer(initialState, {
   payload: { username: mockName },
 });
 
+const loggedOutState = reducer(initialState, {
+  type: types.LOGOUT,
+});
+
 const authErrorState = reducer(initialState, {
   type: types.AUTH_ERROR,
   payload: ['error occured'],
@@ -110,5 +114,9 @@ describe('auth reducer', () => {
       Rejected: 0,
       Investigating: 0,
     });
+  });
+
+  it('handle Logout', () => {
+    expect(loggedOutState).toEqual(initialState);
   });
 });

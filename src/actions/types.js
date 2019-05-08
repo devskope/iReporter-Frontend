@@ -5,6 +5,8 @@ export const SIGNED_UP = 'SIGNED_UP';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const CLEAR_AUTH_ERRORS = 'CLEAR_AUTH_ERRORS';
 
+export const LOGOUT = 'LOGOUT';
+
 /* Record action types */
 export const RECORD_REQUEST = 'RECORD_REQUEST';
 export const RECORD_CREATE_SUCCESS = 'RECORD_CREATE_SUCCESS';

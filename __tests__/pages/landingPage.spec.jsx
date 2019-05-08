@@ -9,7 +9,7 @@ import { mockStore } from '../../enzyme.config';
 describe('LandingPage', () => {
   const setup = () =>
     mount(
-      <Provider store={mockStore({})}>
+      <Provider store={mockStore({ auth: { loggedIn: false, user: {} } })}>
         <Router>
           <LandingPage />
         </Router>

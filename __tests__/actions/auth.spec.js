@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock';
 import faker from 'faker';
 import { mockStore } from '../../enzyme.config';
-import { login, signUp } from '../../src/actions/auth';
+import { login, signUp, logout } from '../../src/actions/auth';
 
 describe('auth', () => {
   let user;
@@ -125,6 +125,22 @@ describe('auth', () => {
           type: 'SUCCESS',
           title: 'SUCCESS',
           messages: [`Hi ${user.username}, welcome to iReporter.`],
+        },
+      },
+    ]);
+  });
+
+  it('should dispatch correct logout action', async () => {
+    await store.dispatch(logout());
+
+    expect(store.getActions()).toEqual([
+      { type: 'LOGOUT' },
+      {
+        type: 'CREATE_TOAST',
+        payload: {
+          type: 'SUCCESS',
+          title: 'Logged out',
+          messages: [`You have logged out successfully`],
         },
       },
     ]);

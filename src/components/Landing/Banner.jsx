@@ -1,7 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import bannerImage from '../../../public/images/selfie.svg';
 
-const Banner = () => {
+const Banner = ({ authenticated }) => {
+  const ctoa = authenticated
+    ? { link: '/users', text: 'Dashboard' }
+    : { link: '/signup', text: 'Get started' };
+
   return (
     <section className="banner">
       <div className="banner__image-holder">
@@ -20,11 +26,18 @@ const Banner = () => {
           <br />
           government&apos;s quick intervention
         </p>
-        <button className="btn btn--alt access" type="button">
-          Start Reporting
-        </button>
+        <Link to={ctoa.link}>
+          <button className="btn btn--alt access" type="button">
+            {ctoa.text}
+          </button>
+        </Link>
       </div>
     </section>
   );
 };
+
+Banner.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+};
+
 export default Banner;
